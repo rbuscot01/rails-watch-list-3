@@ -25,9 +25,9 @@
       <div class="card-body">
         <h5 class="card-title d-flex justify-content-between"><%= movie.title %>
           <div class="text-muted">
-          <%= movie.rating %>
-          <i class="fa-solid fa-star" style="color: #fff700;">
-          </i>
+            <%= movie.rating %>
+            <i class="fa-solid fa-star" style="color: #fff700;">
+            </i>
           </div>
         </h5>
         <p class="text-muted"><%= movie.overview %></p>
@@ -41,7 +41,13 @@
         data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
       </div>
     </div>
-  <% end %>
+
+
+    <% end %>
   </div>
+   <%# ---------------HERE I CAN ADD A BOOKMARD--------------------%>
+
+  <%= render "bookmarks/new", list: @list, bookmark: @bookmark %>
+
 
 </div>
