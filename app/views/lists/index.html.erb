@@ -1,0 +1,18 @@
+<div class="container">
+  <%# ------Premiere ligne avec MY LISTS et CREATE LIST BUTTON-------------- %>
+  <div class="d-flex flex-row justify-content-between pt-3">
+    <h1>My Lists</h1>
+    <a class="btn btn-primary m-1" href="<%= new_list_path %>" >Create a movie list</a>
+  </div>
+
+  <%# ------Container avec toutes les cards et itération sur list-------------- %>
+  <div class="container" style="width: 600px;">
+    <% @lists.each do |list| %>
+    <a href="<%=list_path(list[:id])%>" class="card-category m-3"
+    style="background-image: url(<%= url_for(list.image) %>)" >
+      <%= list.name %>
+    </a>
+    <% end %>
+  </div>
+
+</div>

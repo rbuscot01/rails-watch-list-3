@@ -1,0 +1,17 @@
+<div class="container">
+<%# ------Premiere ligne avec titre et button-------------- %>
+  <div class="d-flex flex-row justify-content-between pt-3">
+    <h1>Create a new list</h1>
+    <a class="btn btn-primary m-1" href="#" >Button just in case</a>
+  </div>
+
+<%# ------Container avec toutes les cards et itération sur list-------------- %>
+  <div class="cards">
+  here simple form
+    <%= simple_form_for @list do |f| %>
+      <%= f.input :name %>
+      <%= f.input :image, as: :file, label: "Image" %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

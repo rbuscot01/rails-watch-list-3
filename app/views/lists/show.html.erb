@@ -1,0 +1,47 @@
+<%# ici je display une des listes créées %>
+<div class="container">
+  <%# ---------------ROW TITLE+ BUTTONNAME--------------------%>
+  <div class="flex-row d-flex justify-content-between mt-3">
+    <h1><%= @list.name %></h1>
+    <a class="btn btn-primary m-3" href="<%= new_list_bookmark_path(@list)%>">Add a movie</a>
+  </div>
+
+  <%# ---------------OPTION VIDE--------------------%>
+  <div class="container">
+      <%= "Your list is still empty !" if @list.movies.empty? %>
+  </div>
+
+ <%# --------------CARD GRID POUR DISPLAY LES BOOKMARK--------------------%>
+  <div class="cards m-5">
+
+   <%# ---------------DISPLAY EVERY BOOKMARK IN THAT LIST--------------------%>
+    <% @list.movies.each do |movie| %>
+    <%# <% @movies.each do |movie| %>
+
+    <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+
+    <div class="card m-3" style="width: 30vw;" >
+      <img class="card-img-top" src="<%=movie.poster_url %>" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title d-flex justify-content-between"><%= movie.title %>
+          <div class="text-muted">
+          <%= movie.rating %>
+          <i class="fa-solid fa-star" style="color: #fff700;">
+          </i>
+          </div>
+        </h5>
+        <p class="text-muted"><%= movie.overview %></p>
+        <p class="card-text d-flex">
+          <small class="text-muted"><%= bookmark.comment %> <br>
+          <small class="text-muted">Created on <%= movie.created_at.to_date %>
+          </small>
+        </p>
+
+        <%= link_to "Delete", bookmark_path(bookmark),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+      </div>
+    </div>
+  <% end %>
+  </div>
+
+</div>
